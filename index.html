@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <style>
+    @keyframes neon-pulse {
+      0% { text-shadow: 0 0 10px #4ee, 0 0 20px #4ee, 0 0 30px #4ee; }
+      50% { text-shadow: 0 0 20px #50f, 0 0 30px #50f, 0 0 40px #50f; }
+      100% { text-shadow: 0 0 10px #4ee, 0 0 20px #4ee, 0 0 30px #4ee; }
+    }
+
+    @keyframes border-flow {
+      0% { border-color: #4ee; }
+      50% { border-color: #50f; }
+      100% { border-color: #4ee; }
+    }
+
+    body {
+      margin: 0;
+      padding: 0;
+      background: #0a0a1a;
+      color: #fff;
+      font-family: 'Arial', sans-serif;
+      background-image: 
+        linear-gradient(45deg, rgba(0,0,30,0.7) 25%, transparent 25%),
+        linear-gradient(-45deg, rgba(0,0,30,0.7) 25%, transparent 25%),
+        linear-gradient(45deg, transparent 75%, rgba(0,0,30,0.7) 75%),
+        linear-gradient(-45deg, transparent 75%, rgba(0,0,30,0.7) 75%);
+      background-size: 20px 20px;
+    }
+
+    .container {
+      max-width: 1000px;
+      margin: 0 auto;
+      padding: 20px;
+    }
+
+    .title {
+      font-size: 4em;
+      text-align: center;
+      color: #4ee;
+      text-transform: uppercase;
+      margin: 20px 0;
+      animation: neon-pulse 2s infinite;
+    }
+
+    .kill-count {
+      font-size: 2.5em;
+      text-align: center;
+      color: #50f;
+      margin: 20px 0;
+      text-shadow: 0 0 10px #50f;
+    }
+
+    .roast-box {
+      background: rgba(20, 20, 40, 0.9);
+      border: 2px solid #4ee;
+      padding: 20px;
+      margin: 20px 0;
+      border-radius: 5px;
+      animation: border-flow 2s infinite;
+      position: relative;
+      overflow: hidden;
+      box-shadow: 0 0 20px rgba(78, 238, 238, 0.2);
+    }
+
+    .roast-box::before {
+      content: '';
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: linear-gradient(
+        to right,
+        transparent,
+        rgba(78, 238, 238, 0.1),
+        transparent
+      );
+      transform: rotate(45deg);
+      animation: shine 3s infinite;
+    }
+
+    @keyframes shine {
+      0% { transform: translateX(-100%) rotate(45deg); }
+      100% { transform: translateX(100%) rotate(45deg); }
+    }
+
+    .roast-text {
+      font-size: 1.3em;
+      line-height: 1.6;
+      color: #fff;
+      margin: 10px 0;
+    }
+
+    .stat-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 20px;
+      margin: 30px 0;
+    }
+
+    .stat-card {
+      background: linear-gradient(135deg, rgba(78, 238, 238, 0.1), rgba(85, 0, 255, 0.1));
+      padding: 20px;
+      border-radius: 5px;
+      text-align: center;
+      box-shadow: 0 0 15px rgba(78, 238, 238, 0.1);
+    }
+
+    .stat-value {
+      font-size: 2em;
+      color: #4ee;
+      margin: 10px 0;
+      text-shadow: 0 0 10px rgba(78, 238, 238, 0.5);
+    }
+
+    .stat-label {
+      color: #fff;
+      text-transform: uppercase;
+    }
+
+    .damage-meter {
+      width: 100%;
+      height: 30px;
+      background: #1a1a3a;
+      margin: 20px 0;
+      position: relative;
+      border-radius: 15px;
+      overflow: hidden;
+      box-shadow: 0 0 15px rgba(78, 238, 238, 0.2);
+    }
+
+    .damage-fill {
+      width: 90%;
+      height: 100%;
+      background: linear-gradient(90deg, #4ee, #50f);
+      animation: fill 2s ease-out;
+    }
+
+    @keyframes fill {
+      from { width: 0; }
+      to { width: 90%; }
+    }
+
+    .final-message {
+      background: linear-gradient(135deg, #4ee, #50f);
+      -webkit-background-clip: text;
+      -webkit-text-fill-color: transparent;
+      font-size: 1.5em;
+      text-align: center;
+      margin: 20px 0;
+      padding: 20px;
+      text-shadow: none;
+    }
+  </style>
+</head>
+<body>
+  <div class="container">
+    <h1 class="title">PREETAM'S HALL OF SHAME</h1>
+    
+    <div class="kill-count">
+      TREAT DEBT TIMER: <span id="counter">Loading...</span>
+    </div>
+
+    <div class="stat-grid">
+      <div class="stat-card">
+        <div class="stat-value">9999+</div>
+        <div class="stat-label">Excuses Generated</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">0%</div>
+        <div class="stat-label">Treat Success Rate</div>
+      </div>
+      <div class="stat-card">
+        <div class="stat-value">∞</div>
+        <div class="stat-label">Empty Promises</div>
+      </div>
+    </div>
+
+    <div class="roast-box">
+      <div class="roast-text">
+        CRITICAL HIT: Preetam's wallet has more security features than his gaming PC! Even his bank account has PTSD from all the canceled treat plans! 🔒
+      </div>
+    </div>
+
+    <div class="roast-box">
+      <div class="roast-text">
+        MEGA DAMAGE: Bro's treat promises are like his K/D ratio - constantly dropping! At least in games you can respawn, but these promises are permanently dead! 💀
+      </div>
+    </div>
+
+    <div class="roast-box">
+      <div class="roast-text">
+        COMBO BREAKER: Your excuses are evolving faster than game patches! "Next time bro" is your favorite combo move, but we all know it's just button mashing at this point! 🎮
+      </div>
+    </div>
+
+    <div class="roast-box">
+      <div class="roast-text">
+        ULTIMATE MOVE: Scientists are using Preetam's treat arrival time to measure the heat death of the universe! Even NPCs are more reliable than your promises! 🚀
+      </div>
+    </div>
+
+    <div class="damage-meter">
+      <div class="damage-fill"></div>
+    </div>
+
+    <div class="roast-box">
+      <div class="final-message">
+        GAME OVER: Your friend's trust in your treat promises has rage quit! 
+        <br>
+        Press F to pay respects to all the forgotten treats...
+      </div>
+    </div>
+  </div>
+
+  <script>
+    const startDate = new Date('2024-01-08');
+
+    function updateCounter() {
+      const now = new Date();
+      const diff = now - startDate;
+      const days = Math.floor(diff / (1000 * 60 * 60 * 24));
+      const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
+      document.getElementById('counter').innerHTML = 
+        ${days} DAYS ${hours} HOURS OF SHAME;
+    }
+
+    updateCounter();
+    setInterval(updateCounter, 1000 * 60);
+  </script>
+</body>
+</html>
