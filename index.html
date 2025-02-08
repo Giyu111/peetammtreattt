@@ -1,233 +1,160 @@
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Preetam's Hall of Shame</title>
   <style>
-    @keyframes neon-pulse {
-      0% { text-shadow: 0 0 10px #4ee, 0 0 20px #4ee, 0 0 30px #4ee; }
-      50% { text-shadow: 0 0 20px #50f, 0 0 30px #50f, 0 0 40px #50f; }
-      100% { text-shadow: 0 0 10px #4ee, 0 0 20px #4ee, 0 0 30px #4ee; }
-    }
-
-    @keyframes border-flow {
-      0% { border-color: #4ee; }
-      50% { border-color: #50f; }
-      100% { border-color: #4ee; }
-    }
-
-    body {
+    @import url('https://fonts.googleapis.com/css2?family=Orbitron:wght@400;700&display=swap');
+    
+    * {
       margin: 0;
       padding: 0;
-      background: #0a0a1a;
+      box-sizing: border-box;
+    }
+    
+    body {
+      font-family: 'Orbitron', sans-serif;
+      background: #020204;
       color: #fff;
-      font-family: 'Arial', sans-serif;
-      background-image: 
-        linear-gradient(45deg, rgba(0,0,30,0.7) 25%, transparent 25%),
-        linear-gradient(-45deg, rgba(0,0,30,0.7) 25%, transparent 25%),
-        linear-gradient(45deg, transparent 75%, rgba(0,0,30,0.7) 75%),
-        linear-gradient(-45deg, transparent 75%, rgba(0,0,30,0.7) 75%);
-      background-size: 20px 20px;
+      overflow-x: hidden;
     }
 
     .container {
-      max-width: 1000px;
-      margin: 0 auto;
+      text-align: center;
       padding: 20px;
     }
 
     .title {
       font-size: 4em;
-      text-align: center;
-      color: #4ee;
       text-transform: uppercase;
-      margin: 20px 0;
-      animation: neon-pulse 2s infinite;
+      animation: neon-glow 1.5s infinite alternate;
+    }
+
+    @keyframes neon-glow {
+      from { text-shadow: 0 0 10px #ff0, 0 0 20px #f0f, 0 0 30px #0ff; }
+      to { text-shadow: 0 0 20px #f0f, 0 0 30px #ff0, 0 0 40px #0ff; }
     }
 
     .kill-count {
-      font-size: 2.5em;
-      text-align: center;
-      color: #50f;
+      font-size: 2em;
       margin: 20px 0;
-      text-shadow: 0 0 10px #50f;
+      animation: flicker 1.5s infinite;
+    }
+
+    @keyframes flicker {
+      0% { opacity: 1; }
+      50% { opacity: 0.7; }
+      100% { opacity: 1; }
     }
 
     .roast-box {
-      background: rgba(20, 20, 40, 0.9);
-      border: 2px solid #4ee;
+      background: rgba(20, 20, 40, 0.95);
+      border: 2px solid #ff0;
       padding: 20px;
       margin: 20px 0;
-      border-radius: 5px;
-      animation: border-flow 2s infinite;
+      border-radius: 10px;
       position: relative;
-      overflow: hidden;
-      box-shadow: 0 0 20px rgba(78, 238, 238, 0.2);
+      transition: transform 0.3s, box-shadow 0.3s;
+      cursor: pointer;
     }
-
-    .roast-box::before {
-      content: '';
-      position: absolute;
-      top: -50%;
-      left: -50%;
-      width: 200%;
-      height: 200%;
-      background: linear-gradient(
-        to right,
-        transparent,
-        rgba(78, 238, 238, 0.1),
-        transparent
-      );
-      transform: rotate(45deg);
-      animation: shine 3s infinite;
-    }
-
-    @keyframes shine {
-      0% { transform: translateX(-100%) rotate(45deg); }
-      100% { transform: translateX(100%) rotate(45deg); }
+    
+    .roast-box:hover {
+      transform: scale(1.05);
+      box-shadow: 0 0 20px rgba(255, 255, 0, 0.8);
     }
 
     .roast-text {
-      font-size: 1.3em;
-      line-height: 1.6;
-      color: #fff;
-      margin: 10px 0;
-    }
-
-    .stat-grid {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-      gap: 20px;
-      margin: 30px 0;
-    }
-
-    .stat-card {
-      background: linear-gradient(135deg, rgba(78, 238, 238, 0.1), rgba(85, 0, 255, 0.1));
-      padding: 20px;
-      border-radius: 5px;
-      text-align: center;
-      box-shadow: 0 0 15px rgba(78, 238, 238, 0.1);
-    }
-
-    .stat-value {
-      font-size: 2em;
-      color: #4ee;
-      margin: 10px 0;
-      text-shadow: 0 0 10px rgba(78, 238, 238, 0.5);
-    }
-
-    .stat-label {
-      color: #fff;
-      text-transform: uppercase;
+      font-size: 1.5em;
+      text-shadow: 0 0 5px #ff0;
     }
 
     .damage-meter {
-      width: 100%;
+      width: 80%;
       height: 30px;
-      background: #1a1a3a;
-      margin: 20px 0;
-      position: relative;
+      background: #222;
       border-radius: 15px;
       overflow: hidden;
-      box-shadow: 0 0 15px rgba(78, 238, 238, 0.2);
+      margin: 20px auto;
+      box-shadow: 0 0 15px rgba(255, 0, 255, 0.5);
     }
-
+    
     .damage-fill {
-      width: 90%;
       height: 100%;
-      background: linear-gradient(90deg, #4ee, #50f);
-      animation: fill 2s ease-out;
+      background: linear-gradient(90deg, #ff0, #f0f);
+      width: 100%;
+      animation: pulsate 2s infinite alternate;
     }
 
-    @keyframes fill {
-      from { width: 0; }
-      to { width: 90%; }
+    @keyframes pulsate {
+      from { width: 80%; }
+      to { width: 100%; }
     }
 
-    .final-message {
-      background: linear-gradient(135deg, #4ee, #50f);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
+    .roast-scroll {
       font-size: 1.5em;
-      text-align: center;
-      margin: 20px 0;
-      padding: 20px;
-      text-shadow: none;
+      color: #ff0;
+      white-space: nowrap;
+      overflow: hidden;
+      position: relative;
+      width: 100%;
+    }
+
+    .roast-scroll span {
+      position: absolute;
+      animation: scroll-text 10s linear infinite;
+    }
+
+    @keyframes scroll-text {
+      from { transform: translateX(100%); }
+      to { transform: translateX(-100%); }
     }
   </style>
 </head>
 <body>
   <div class="container">
-    <h1 class="title">PREETAM'S HALL OF SHAME</h1>
+    <h1 class="title">Preetam's Hall of Shame</h1>
     
     <div class="kill-count">
-      TREAT DEBT TIMER: <span id="counter">Loading...</span>
+      Treat Debt Timer: <span id="counter">Loading...</span>
+    </div>
+    
+    <div class="roast-scroll">
+      <span>Preetam's bank account has seen fewer withdrawals than Area 51! | Bro's treat schedule is more delayed than Cyberpunk 2077 updates! | Your promises are rarer than a legendary loot drop! </span>
     </div>
 
-    <div class="stat-grid">
-      <div class="stat-card">
-        <div class="stat-value">9999+</div>
-        <div class="stat-label">Excuses Generated</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">0%</div>
-        <div class="stat-label">Treat Success Rate</div>
-      </div>
-      <div class="stat-card">
-        <div class="stat-value">∞</div>
-        <div class="stat-label">Empty Promises</div>
-      </div>
-    </div>
-
-    <div class="roast-box">
-      <div class="roast-text">
-        CRITICAL HIT: Preetam's wallet has more security features than his gaming PC! Even his bank account has PTSD from all the canceled treat plans! 🔒
-      </div>
-    </div>
-
-    <div class="roast-box">
-      <div class="roast-text">
-        MEGA DAMAGE: Bro's treat promises are like his K/D ratio - constantly dropping! At least in games you can respawn, but these promises are permanently dead! 💀
-      </div>
-    </div>
-
-    <div class="roast-box">
-      <div class="roast-text">
-        COMBO BREAKER: Your excuses are evolving faster than game patches! "Next time bro" is your favorite combo move, but we all know it's just button mashing at this point! 🎮
-      </div>
-    </div>
-
-    <div class="roast-box">
-      <div class="roast-text">
-        ULTIMATE MOVE: Scientists are using Preetam's treat arrival time to measure the heat death of the universe! Even NPCs are more reliable than your promises! 🚀
-      </div>
+    <div class="roast-box" onclick="randomRoast()">
+      <div class="roast-text" id="roast-text">Click to generate a roast!</div>
     </div>
 
     <div class="damage-meter">
       <div class="damage-fill"></div>
     </div>
-
-    <div class="roast-box">
-      <div class="final-message">
-        GAME OVER: Your friend's trust in your treat promises has rage quit! 
-        <br>
-        Press F to pay respects to all the forgotten treats...
-      </div>
-    </div>
   </div>
 
   <script>
     const startDate = new Date('2024-01-08');
-
     function updateCounter() {
       const now = new Date();
       const diff = now - startDate;
       const days = Math.floor(diff / (1000 * 60 * 60 * 24));
       const hours = Math.floor((diff % (1000 * 60 * 60 * 24)) / (1000 * 60 * 60));
-      document.getElementById('counter').innerHTML = 
-        ${days} DAYS ${hours} HOURS OF SHAME;
+      document.getElementById('counter').innerHTML = `${days} DAYS ${hours} HOURS OF SHAME`;
     }
-
     updateCounter();
     setInterval(updateCounter, 1000 * 60);
+
+    const roasts = [
+      "Preetam's treat promises are more extinct than dinosaurs!", 
+      "NASA just found signs of Preetam's missing treats on Mars!", 
+      "Even a snail moves faster than Preetam’s treat plans!", 
+      "Your wallet is under more lockdown than a military base!", 
+      "Bro's treat schedule is longer than the One Piece series!"
+    ];
+    
+    function randomRoast() {
+      document.getElementById("roast-text").innerText = roasts[Math.floor(Math.random() * roasts.length)];
+    }
   </script>
 </body>
 </html>
